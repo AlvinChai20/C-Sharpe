@@ -1,0 +1,73 @@
+﻿@model UserApp.Models.Appointments
+@{
+    ViewData["Title"] = "Edit Appointment";
+}
+<head>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+</head>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4 text-primary">Edit Appointment</h2>
+
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Status" />
+                        <input type="hidden" asp-for="UserId" />
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <!-- Name (readonly but submitted) -->
+                        <div class="form-group mb-3">
+                            <label>Name</label>
+                            <input type="text" class="form-control" asp-for="ClientName" readonly />
+                        </div>
+
+                        <!-- Contact Number (readonly but submitted) -->
+                        <div class="form-group mb-3">
+                            <label>Contact Number</label>
+                            <input type="tel" class="form-control" asp-for="ContactNumber" readonly />
+                        </div>
+
+                        <!-- Service (readonly dropdown look, but submitted via hidden input) -->
+                        <div class="form-group mb-3">
+                            <label>Service</label>
+                            <input type="text" class="form-control" value="@Model.Service" readonly />
+                            <input type="hidden" asp-for="Service" />
+                        </div>
+
+                        <!-- Price (readonly display) -->
+                        <div class="form-group mb-3">
+                            <label>Price</label>
+                            <input type="text" class="form-control" value="RM@(ViewBag.Price ?? "0.00")" readonly />
+                            <input type="hidden" value="@ViewBag.Price" id="priceInput" />
+                        </div>
+
+                        <!-- Date & Time (ONLY editable field) -->
+                        <div class="form-group mb-3">
+                            <label>Date & Time</label>
+                            <input type="datetime-local" class="form-control" asp-for="Date" id="appointmentDate" required />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateInput = document.getElementById("appointmentDate");
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            dateInput.min = now.toISOString().slice(0, 16);
+        });
+    </script>
+}

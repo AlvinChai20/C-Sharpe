@@ -1,0 +1,71 @@
+﻿@model UserApp.Models.Appointments
+
+@{
+    ViewData["Title"] = "Book Appointment";
+
+    // Ensure we have well-formatted strings (two decimals)
+    var priceStr = ViewBag.Price != null
+        ? Convert.ToDecimal(ViewBag.Price).ToString("F2")
+        : "0.00";
+
+    var depositStr = ViewBag.Deposit != null
+        ? Convert.ToDecimal(ViewBag.Deposit).ToString("F2")
+        : "0.00";
+}
+
+<head>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+</head>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h2 class="text-center">Book Appointment</h2>
+            <form asp-action="Proceed" method="post">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group mb-3">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="ClientName" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Contact Number</label>
+                    <input type="tel" class="form-control"
+                           name="ContactNumber"
+                           pattern="\d{10}"
+                           maxlength="10"
+                           minlength="10"
+                           title="Contact number must be exactly 10 digits"
+                           required />
+                    @Html.ValidationMessage("ContactNumber", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Service</label>
+                    <input type="text" class="form-control" name="Service" value="@ViewBag.Service" readonly />
+                </div>
+
+                <!-- hidden numeric values (no "RM") for server-side parsing -->
+                <input type="hidden" name="Price" value="@priceStr" />
+                <div class="form-group mb-3">
+                    <label>Total Price</label>
+                    <input type="text" class="form-control" value="RM @priceStr" readonly />
+                </div>
+
+                <input type="hidden" name="Deposit" value="@depositStr" />
+                <div class="form-group mb-3">
+                    <label>Deposit</label>
+                    <input type="text" class="form-control" value="RM @depositStr" readonly />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Date & Time</label>
+                    <input type="datetime-local" class="form-control" name="Date" id="appointmentDate" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Proceed</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,391 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using UsersApp.Models
+@model UsersApp.Models.Users
+
+@inject SignInManager<Users> SignInManager
+@inject UserManager<Users> UserManager
+
+@{
+    Layout = null; // or null if you want standalone
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dental</title>
+    <link rel="stylesheet" href="~/css/homepage.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="/" style="text-decoration: none; color: inherit;">DentQ</a>
+            </div>
+            <nav>
+                <ul class="nav-cards-list">
+                    <li><a href="/Home/Doctor" class="nav-card"><i class="fas fa-user-md"></i><h3>Doctor</h3></a></li>
+                    <li><a href="/Home/About" class="nav-card"><i class="fas fa-info-circle"></i><h3>About</h3></a></li>
+                    <li><a href="/Home/Contact" class="nav-card"><i class="fas fa-envelope"></i><h3>Contact</h3></a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    var user = await UserManager.GetUserAsync(User);
+                    <div class="user-profile">
+                        <img src="@(string.IsNullOrEmpty(user?.ProfilePictureUrl) ? "/images/default-profile.png" : user.ProfilePictureUrl)"
+                             alt="Profile Picture" class="user-profile-img"
+                             onerror="this.src='/images/default-profile.png';" />
+                        <a href="/Account/Profile" class="user-profile-name">@user?.FullName</a>
+                    </div>
+
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <button type="submit" class="btn-login">Logout</button>
+                    </form>
+
+                    <a href="/Book/BookNow" class="btn">Book Now</a>
+                    <a asp-controller="Booking" asp-action="List" class="btn btn-info">View My Bookings</a>
+                }
+                else
+                {
+                    <a href="/Account/Login" class="btn-login">Login</a>
+                    <a href="/Account/Register" class="btn-login">Register</a>
+                }
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Welcome to DentQ</h1>
+            <p>“Healthy Teeth, Healthy Life.”</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h1>About Our DentQ</h1>
+                <p>Smiles Made Smarter</p>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p>
+                    At DentQ, we provide gentle and professional care to help you achieve a healthy,
+                    confident smile. Our team combines modern technology with a compassionate touch,
+                    ensuring every visit is comfortable and stress-free.
+                </p>
+                <a href="/Home/About" class="btn" style="margin-top: 50px; display: inline-block;">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Treatments</h2>
+                <p>Your Comfort, Our Priority</p>
+            </div>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="~/images/scaling.jpg" alt="Scaling">
+                    <div class="room-content">
+                        <h3>Scaling</h3>
+                        <p>Removes plaque, tartar, and stains to keep your teeth and gums healthy.</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="~/images/Filling.jpg" alt="Filling">
+                    <div class="room-content">
+                        <h3>Filling</h3>
+                        <p>Restores decayed or damaged teeth to normal shape and function.</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="~/images/brace.jpg" alt="Braces">
+                    <div class="room-content">
+                        <h3>Braces</h3>
+                        <p>Straightens teeth and corrects bite issues for a confident smile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Google Maps Section -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit Our DentQ</p>
+            </div>
+
+            <div class="map-container" style="margin-bottom: 30px;">
+                <div id="map" style="height: 400px; width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
+            </div>
+
+            <div class="location-info" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div style="text-align: left;">
+                        <h3 style="color: #0c4da2; margin-bottom: 15px;">Address</h3>
+                        <p>
+                            <i class="fas fa-map-marker-alt" style="color: #c89c45; width: 20px;"></i>
+                            DentQ, Setapak<br>
+                            20998 Kuala Lumpur, Malaysia
+                        </p>
+                    </div>
+                    <div style="text-align: left;">
+                        <h3 style="color: #0c4da2; margin-bottom: 15px;">Contact</h3>
+                        <p>
+                            <i class="fas fa-phone" style="color: #c89c45; width: 20px;"></i>
+                            +155512345678<br>
+                            <i class="fas fa-envelope" style="color: #c89c45; width: 20px;"></i>
+                            info@DentQ.com
+                        </p>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                    <a href="https://maps.app.goo.gl/Hsy6pojLHTWHprRu6"
+                       target="_blank" class="btn">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Google Maps functionality
+        let map;
+        let marker;
+        let userMarker;
+        let directionsService;
+        let directionsRenderer;
+
+        function initMap() {
+            // Dental location (Redang Island coordinates)
+                   const DentalLocation = { lat: 3.2112, lng: 101.7250
+        };
+
+            // Create the map
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: DentalLocation,
+                mapTypeControl: true,
+                streetViewControl: true,
+                fullscreenControl: true,
+                styles: [
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#444444"}]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [{"color": "#f2f2f2"}]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [{"saturation": -100}, {"lightness": 45}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "simplified"}]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.icon",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [{"color": "#0c4da2"}, {"visibility": "on"}]
+                    }
+                ]
+            });
+
+            // Create the marker for the Dental
+            marker = new google.maps.Marker({
+                position: DentalLocation,
+                map: map,
+                title: 'DentQ',
+                icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                }
+            });
+
+            // Add info window
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="padding: 10px; max-width: 250px;">
+                        <h3 style="margin: 0 0 10px 0; color: #0c4da2;">DentQ</h3>
+                        <p style="margin: 0 0 8px 0;">
+                            <i class="fas fa-map-marker-alt" style="color: #c89c45;"></i>
+                            DentQ, Setapak
+                        </p>
+                        <a href="https://maps.app.goo.gl/Hsy6pojLHTWHprRu6"
+                           target="_blank" style="display: inline-block; margin-top: 10px; color: #0c4da2; text-decoration: none;">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                    </div>
+                `
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+
+            // Initialize directions service
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            // Add nearby places search
+            const request = {
+                location: DentalLocation,
+                radius: '5000',
+                type: ['restaurant', 'cafe', 'tourist_attraction']
+            };
+
+            const service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, (results, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (let i = 0; i < Math.min(results.length, 5); i++) {
+                        createPlaceMarker(results[i]);
+                    }
+                }
+            });
+        }
+
+        function createPlaceMarker(place) {
+            if (!place.geometry || !place.geometry.location) return;
+
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+                title: place.name,
+                icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                }
+            });
+
+            google.maps.event.addListener(marker, 'click', () => {
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `
+                        <div style="padding: 10px;">
+                            <h4 style="margin: 0 0 5px 0;">${place.name}</h4>
+                            <p style="margin: 0;">Rating: ${place.rating || 'N/A'}/5</p>
+                        </div>
+                    `
+                });
+                infoWindow.open(map, marker);
+            });
+        }
+
+
+
+        function calculateAndDisplayRoute(userLocation) {
+                   const DentalLocation = { lat: 3.2112, lng: 101.7250
+        };
+
+            directionsService.route(
+                {
+                    origin: userLocation,
+                    destination: DentalLocation,
+                    travelMode: google.maps.TravelMode.DRIVING
+                },
+                (response, status) => {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(response);
+
+                        // Display distance and time
+                        const route = response.routes[0];
+                        let totalDistance = 0;
+                        let totalDuration = 0;
+
+                        for (let i = 0; i < route.legs.length; i++) {
+                            totalDistance += route.legs[i].distance.value;
+                            totalDuration += route.legs[i].duration.value;
+                        }
+
+                        // Convert to km and minutes
+                        const distanceKm = (totalDistance / 1000).toFixed(1);
+                        const durationMin = Math.ceil(totalDuration / 60);
+
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: `
+                                <div style="padding: 10px;">
+                                    <h4 style="margin: 0 0 10px 0; color: #0c4da2;">Directions to DentQ</h4>
+                                    <p style="margin: 0 0 5px 0;">Distance: ${distanceKm} km</p>
+                                    <p style="margin: 0;">Estimated time: ${durationMin} minutes</p>
+                                </div>
+                            `,
+                            position: userLocation
+                        });
+
+                        infoWindow.open(map);
+                    } else {
+                        alert('Directions request failed due to ' + status);
+                    }
+                }
+            );
+        }
+
+        // Fallback if Google Maps fails to load
+        setTimeout(() => {
+            if (typeof google === 'undefined') {
+                document.getElementById('map').innerHTML = `
+                    <div style="height: 100%; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border-radius: 8px;">
+                        <div class="text-center">
+                            <h4 style="color: #0c4da2; margin-bottom: 15px;">Map Loading Failed</h4>
+                            <p style="margin-bottom: 20px;">Please check your internet connection and ensure the Google Maps API key is valid.</p>
+                            <a href="https://maps.app.goo.gl/Hsy6pojLHTWHprRu6"
+                               target="_blank" class="btn">
+                                <i class="fas fa-external-link-alt"></i> View on Google Maps
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        }, 5000);
+       
+
+
+    </script>
+
+    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-okraJwhjhI8pJnt6xUfP_K51ygV_Y8k&callback=initMap&libraries=places" async defer></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>DentQ</h3>
+                <p>123 DentQ Avenue, City, Country</p>
+                <p>Phone: +1 (555) 123-4567 | Email: info@DentQ.com</p>
+            </div>
+            <p>&copy; 2025 DentQ. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+﻿@using UsersApp
+@using UsersApp.Models
+@using UsersApp.ViewModels;
+@model RegisterModels;
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">Register</h2>
+
+        <form asp-action="Register" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Role" class="control-label"></label>
+                <select asp-for="Role" class="form-control">
+                    <option value="User">User</option>
+                    <option value="Staff">Staff</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <!-- Profile Photo -->
+            <div class="mb-3">
+                <label asp-for="ProfilePhoto" class="form-label"></label>
+                <input asp-for="ProfilePhoto" class="form-control" type="file" accept="image/*" />
+                <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+            </div>
+
+            <!-- Hidden field bound to CaptchaToken -->
+            <input type="hidden" asp-for="CaptchaToken" id="CaptchaToken" />
+
+            <!-- Google reCAPTCHA -->
+            <div class="mb-3 text-center">
+                <div class="g-recaptcha"
+                     data-sitekey="6Lfa0M4rAAAAAD7UZxufa40d3z5mBnkVkMgqoyPT"></div>
+            </div>
+
+            <input type="submit" id="registerBtn" value="Register" class="btn btn-success w-100 p-2" />
+
+            <p class="text-center mt-2">
+                Already have an account?
+                <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
+            </p>
+            <div class="text-center">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+
+    <!-- Google reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script>
+        // Copy token from g-recaptcha-response into CaptchaToken before form submit
+        document.forms[0].addEventListener("submit", function () {
+            var token = document.getElementById("g-recaptcha-response").value;
+            document.getElementById("CaptchaToken").value = token;
+        });
+    </script>
+}

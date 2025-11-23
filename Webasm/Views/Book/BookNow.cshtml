@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Book Now";
+}
+
+<div class="container mt-4">
+    <!-- 🔎 Search + Sort -->
+    <div class="row mb-3 justify-content-center">
+        <div class="col-md-7 d-flex gap-2 justify-content-center">
+            <input type="text" id="searchBox" class="form-control w-50" placeholder="Search by name..." />
+            <select id="sortBox" class="form-select w-25">
+                <option value="">Sort by</option>
+                <option value="name_asc">Name (A-Z)</option>
+                <option value="name_desc">Name (Z-A)</option>
+                <option value="price_asc">Price (Low → High)</option>
+                <option value="price_desc">Price (High → Low)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 📦 Products -->
+    <div id="productList" class="row g-4 justify-content-center"></div>
+
+    <!-- 📄 Pagination -->
+    <nav>
+        <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <script>
+        function loadProducts(page = 1) {
+            const search = document.getElementById("searchBox").value;
+            const sort = document.getElementById("sortBox").value;
+
+            $.getJSON("/Book/LoadProducts", { page, search, sort }, function (data) {
+                $("#productList").html(data.productsHtml);
+                $("#pagination").html(data.paginationHtml);
+            });
+        }
+
+        $(document).on("keyup", "#searchBox", function () {
+            loadProducts(1);
+        });
+
+        $(document).on("change", "#sortBox", function () {
+            loadProducts(1);
+        });
+
+        $(document).on("click", "#pagination a", function (e) {
+            e.preventDefault();
+            const page = $(this).data("page");
+            loadProducts(page);
+        });
+
+        // Initial load
+        $(document).ready(function () {
+            loadProducts();
+        });
+    </script>
+}

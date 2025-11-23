@@ -1,0 +1,90 @@
+﻿.account-container {
+    background-image: url('../images/login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.account-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    transition: box-shadow 0.2s;
+}
+
+    .account-box:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .account-box h2 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+    }
+
+    .account-box form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .account-box input[type="text"],
+    .account-box input[type="email"],
+    .account-box input[type="password"] {
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+    }
+
+    .account-box input:focus {
+        border-color: #0078d4;
+        outline: none;
+    }
+
+    .account-box button[type="submit"] {
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+        .account-box button[type="submit"]:hover {
+            background: #005fa3;
+        }
+
+    .account-box .account-links {
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+        .account-box .account-links a {
+            color: #0078d4;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: text-decoration 0.2s;
+        }
+
+            .account-box .account-links a:hover {
+                text-decoration: underline;
+            }
+
+

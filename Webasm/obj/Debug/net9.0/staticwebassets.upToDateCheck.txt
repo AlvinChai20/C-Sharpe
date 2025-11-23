@@ -1,0 +1,162 @@
+wwwroot\css\account.css
+wwwroot\css\homepage.css
+wwwroot\css\site.css
+wwwroot\favicon.ico
+wwwroot\images\brace.jpg
+wwwroot\images\dental.jpg
+wwwroot\images\Filling.jpg
+wwwroot\images\login.jpg
+wwwroot\images\profile\190979b8-ca80-4319-b1c6-2bda1ec5fb93.jpg
+wwwroot\images\profile\1b1685e4-15f6-4315-9eba-e4f81d59fc7e_Filling.jpg
+wwwroot\images\profile\1e61b36a-6e1e-462e-8e67-6974cf521a09.png
+wwwroot\images\profile\28574135-0340-43cb-be90-cd35e1bc9385.png
+wwwroot\images\profile\29a35c64-3a53-4de4-ba13-ba353a32bbc0_【哲风壁纸】二次元插画-动漫角色.png
+wwwroot\images\profile\2cd1b336-a9c3-445b-8d00-cf98b0da6e49_cgpa.png
+wwwroot\images\profile\2ef0e214-74fd-4093-92a7-f1637a77a2a0_cgpa.png
+wwwroot\images\profile\3677a862-6d67-4305-9331-9a5bac3ffee1.jpg
+wwwroot\images\profile\37056072-9720-4a7b-8f7a-1654ce317f5d_image.png
+wwwroot\images\profile\4b995562-d509-4c16-a5b9-c45f5d3945f2.png
+wwwroot\images\profile\56d62a11-44e8-4507-80d0-f3de23f3a863.png
+wwwroot\images\profile\5725c83b-6e74-4149-9dc7-dd9582979eef.png
+wwwroot\images\profile\5a605b2b-b898-40ce-955c-e786ec678128.png
+wwwroot\images\profile\6b7d9b53-38d2-4f1b-b22d-f7832d6d2124.png
+wwwroot\images\profile\73198dc2-9ec4-42f6-8d41-ad75ceb8e641_images.jpg
+wwwroot\images\profile\86efc95e-2e93-4ebf-aeb1-9598b3735f04.png
+wwwroot\images\profile\89b1cdf6-fe7b-4e27-b197-f6728060df58_cgpa.png
+wwwroot\images\profile\928896d3-985c-4eb0-a8cb-1c3ac6a83cca_cgpa.png
+wwwroot\images\profile\92fca14c-f720-4650-a362-e724443ec175_1355759.jpg
+wwwroot\images\profile\965fb98b-062c-4cef-9419-a2ac24c6ff0f.png
+wwwroot\images\profile\c1a6e367-02c1-4b24-9a6c-a5891995125d.jpg
+wwwroot\images\profile\d4f86187-e26a-44cd-a396-d6a53d927681_1355759.jpg
+wwwroot\images\profile\da63e10c-fde8-428c-b694-2edcc2033aca.png
+wwwroot\images\profile\e999d30c-0d85-4713-8bb3-1404efa4e29a_cgpa.png
+wwwroot\images\profile\efa13edc-c436-4f40-9167-b3d298f67e75_cgpa.png
+wwwroot\images\profile\fa135cf1-2d2f-451a-8d72-81dcdb22867d_cgpa.png
+wwwroot\images\profile\fd3fbe44-174c-4d84-bef2-40e26bb42afd_login.jpg
+wwwroot\images\scaling.jpg
+wwwroot\images\whitening.jpeg
+wwwroot\js\site.js
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\dist\jquery.slim.js
+wwwroot\lib\jquery\dist\jquery.slim.min.js
+wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\lib\jquery\LICENSE.txt
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\css\account.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\css\homepage.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\css\site.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\favicon.ico
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\js\site.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation\dist\additional-methods.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery-validation\LICENSE.md
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.slim.min.js
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\imalv\OneDrive\Desktop\Final Version\Webasm\Webasm\wwwroot\lib\jquery\LICENSE.txt

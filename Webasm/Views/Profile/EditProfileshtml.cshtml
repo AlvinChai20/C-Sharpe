@@ -1,0 +1,24 @@
+﻿@model UsersApp.ViewModels.ProfileModels
+
+<h2>Edit Profile</h2>
+
+<form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email (read-only)</label>
+        <input value="@Model.Email" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProfilePhoto"></label>
+        <input asp-for="ProfilePhoto" type="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a asp-action="ViewProfile" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<UserApp.Models.Appointments>
+
+@{
+    ViewData["Title"] = "Appointment History";
+}
+
+<div class="container mt-4">
+    <h2>Appointment History</h2>
+
+    <!-- 🔍 Search, Filter & Page Size -->
+    <div class="d-flex mb-3">
+        <input id="searchBox" type="text" class="form-control me-2" style="max-width: 300px;" placeholder="Search by client, service, or contact" />
+
+        <select id="userFilter" class="form-control me-2" style="max-width: 250px;">
+            <option value="">-- All Users --</option>
+            @foreach (var u in ViewBag.Users)
+            {
+                <option value="@u.Id">@u.UserName</option>
+            }
+        </select>
+
+        <select id="pageSize" class="form-control" style="max-width: 150px;">
+            <option value="5" selected>5 per page</option>
+            <option value="10">10 per page</option>
+            <option value="20">20 per page</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+
+
+    <!-- 📋 Table -->
+    <table class="table table-bordered table-striped" id="appointmentsTable">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Contact</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Purchase Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- rows loaded via AJAX -->
+        </tbody>
+    </table>
+
+    <!-- 📄 Pagination -->
+    <nav>
+        <ul class="pagination justify-content-center"></ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <script>
+        let currentPage = 1;
+        let pageSize = 5;
+
+        function loadAppointments() {
+            let search = $("#searchBox").val();
+            let userId = $("#userFilter").val();
+            pageSize = $("#pageSize").val();
+
+            $.getJSON("/Booking/LoadAppointments", { search: search, userId: userId, page: currentPage, pageSize: pageSize }, function (res) {
+                let rows = "";
+                $.each(res.data, function (i, a) {
+                    rows += `<tr>
+                                <td>${a.clientName ?? ""}</td>
+                                <td>${a.contactNumber ?? ""}</td>
+                                <td>${a.service ?? ""}</td>
+                                <td>${new Date(a.date).toLocaleString()}</td>
+                                <td>${a.status ?? ""}</td>
+                                <td>${a.purchaseStatus ?? ""}</td>
+                            </tr>`;
+                });
+                $("#appointmentsTable tbody").html(rows);
+
+                // build pagination
+                let totalPages = Math.ceil(res.total / pageSize);
+                let pagHtml = "";
+                for (let i = 1; i <= totalPages; i++) {
+                    pagHtml += `<li class="page-item ${i === currentPage ? "active" : ""}">
+                                    <a class="page-link" href="#">${i}</a>
+                                </li>`;
+                }
+                $(".pagination").html(pagHtml);
+            });
+        }
+
+        // 🔄 Events
+        $(document).on("keyup", "#searchBox", function () {
+            currentPage = 1;
+            loadAppointments();
+        });
+
+        $(document).on("change", "#userFilter", function () {
+            currentPage = 1;
+            loadAppointments();
+        });
+
+        $(document).on("change", "#pageSize", function () {
+            currentPage = 1;
+            loadAppointments();
+        });
+
+        $(document).on("click", ".pagination li a", function (e) {
+            e.preventDefault();
+            currentPage = parseInt($(this).text());
+            loadAppointments();
+        });
+
+        // First load
+        $(document).ready(function () {
+            loadAppointments();
+        });
+    </script>
+}

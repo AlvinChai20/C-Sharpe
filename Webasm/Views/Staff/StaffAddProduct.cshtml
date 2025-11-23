@@ -1,0 +1,129 @@
+﻿@model UsersApp.Models.Product
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<style>
+    /* keep styles local to this view */
+    .product-form {
+        max-width: 480px;
+        margin: 36px auto;
+    }
+
+        .product-form .input-group-text {
+            width: 42px;
+            justify-content: center;
+        }
+
+        .product-form .form-control-sm {
+            height: calc(1.5em + .5rem + 2px);
+        }
+
+        .product-form .text-end {
+            text-align: right;
+        }
+</style>
+
+<div class="product-form card shadow p-4">
+    <h3 class="text-center mb-3">Add Product</h3>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <form asp-action="StaffAddProduct" method="post" novalidate>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                <input asp-for="Name" class="form-control form-control-sm" required />
+            </div>
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+                <textarea asp-for="Description" class="form-control form-control-sm" rows="2" required></textarea>
+            </div>
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageUrl" class="form-label"></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                <input asp-for="ImageUrl" class="form-control form-control-sm" placeholder="Enter image URL (e.g. ~/images/scaling.jpg)" required />
+            </div>
+            <span asp-validation-for="ImageUrl" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                <!-- make id explicit so JS can target it -->
+                <input asp-for="Price" id="Price" class="form-control form-control-sm text-end"
+                       type="number" step="0.01" min="0.01" value="@(Model?.Price.ToString("F2") ?? "")" required />
+            </div>
+            <span asp-validation-for="Price" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success px-4">Save</button>
+            <a asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        (function () {
+            const priceEl = document.getElementById('Price');
+
+            if (!priceEl) return;
+
+            // Prevent typing '-' and non-numeric chars (except dot)
+            priceEl.addEventListener('input', function () {
+                // remove any minus signs
+                if (this.value.includes('-')) {
+                    this.value = this.value.replace(/-/g, '');
+                }
+
+                // keep only digits and at most one dot
+                let v = this.value;
+                v = v.replace(/[^0-9.]/g, '');
+                const parts = v.split('.');
+                if (parts.length > 2) {
+                    v = parts[0] + '.' + parts.slice(1).join('');
+                }
+                this.value = v;
+            });
+
+            // On blur, enforce minimum and format to 2 decimals
+            priceEl.addEventListener('blur', function () {
+                let v = parseFloat(this.value);
+                if (isNaN(v) || v < 0.01) {
+                    this.value = '0.01';
+                } else {
+                    // clamp and format
+                    this.value = v.toFixed(2);
+                }
+            });
+
+            // Optional: prevent wheel scroll from changing number in some browsers
+            priceEl.addEventListener('wheel', function (e) {
+                e.preventDefault();
+            });
+        })();
+    </script>
+}

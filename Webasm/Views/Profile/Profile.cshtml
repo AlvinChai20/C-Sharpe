@@ -1,0 +1,12 @@
+﻿@model UsersApp.ViewModels.ProfileModels
+
+<h2>My Profile</h2>
+
+<div class="card" style="width: 18rem;">
+    <img src="@Model.ProfilePictureUrl" class="card-img-top" alt="Profile Picture" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Email</p>
+        <a asp-action="EditProfile" class="btn btn-primary">Edit Profile</a>
+    </div>
+</div>

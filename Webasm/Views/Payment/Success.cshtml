@@ -1,0 +1,12 @@
+﻿@model UserApp.Models.Appointments
+@{
+    ViewData["Title"] = "Payment Successful";
+}
+
+<div class="container text-center mt-5">
+    <h2 class="text-success">Payment Successful! 🎉</h2>
+    <p> Thank you, @Model.ClientName, for your payment.</p>
+    <p> Your appointment for @Model.Service is confirmed.</p>
+    <p> A confirmation email has been sent to your contact number: @Model.ContactNumber</p>
+    <a href="/" class="btn btn-primary mt-3">Return to Home</a>
+</div>

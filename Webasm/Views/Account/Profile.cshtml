@@ -1,0 +1,167 @@
+﻿@using UsersApp
+@using UsersApp.Models
+@using UsersApp.ViewModels;
+@model ProfileModels;
+
+@{
+    ViewData["Title"] = "My Profile";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<style>
+    .accordion-button:not(.collapsed) {
+        color: #fff;
+        background-color: #0c4da2;
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+        }
+</style>
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">My Profile</h2>
+
+        <div id="statusMessage" class="alert d-none"></div>
+
+        <form id="profileForm" asp-action="Profile" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="text-center mb-4">
+                <img id="profileImage" src="@(string.IsNullOrEmpty(Model.ProfilePictureUrl) ? "/images/default-profile.png" : Model.ProfilePictureUrl)"
+                     alt="Profile Picture" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" onerror="this.src='/images/default-profile.png';" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" readonly />
+            </div>
+
+            <div class="accordion" id="profileAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingName">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseName" aria-expanded="true" aria-controls="collapseName">
+                            Change Name
+                        </button>
+                    </h2>
+                    <div id="collapseName" class="accordion-collapse collapse show" aria-labelledby="headingName" data-bs-parent="#profileAccordion">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPassword">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePassword" aria-expanded="false" aria-controls="collapsePassword">
+                            Change Password
+                        </button>
+                    </h2>
+                    <div id="collapsePassword" class="accordion-collapse collapse" aria-labelledby="headingPassword" data-bs-parent="#profileAccordion">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <label asp-for="CurrentPassword" class="form-label"></label>
+                                <input asp-for="CurrentPassword" class="form-control" />
+                                <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="NewPassword" class="form-label"></label>
+                                <input asp-for="NewPassword" class="form-control" />
+                                <span asp-validation-for="NewPassword" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="ConfirmNewPassword" class="form-label"></label>
+                                <input asp-for="ConfirmNewPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPhoto">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhoto" aria-expanded="false" aria-controls="collapsePhoto">
+                            Upload Photo
+                        </button>
+                    </h2>
+                    <div id="collapsePhoto" class="accordion-collapse collapse" aria-labelledby="headingPhoto" data-bs-parent="#profileAccordion">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <label asp-for="ProfilePhoto" class="form-label"></label>
+                                <input type="file" asp-for="ProfilePhoto" class="form-control" accept="image/*" />
+                                <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" id="submitButton" class="btn btn-primary w-100 p-2">Update Profile</button>
+            </div>
+        </form>
+
+        <p class="text-center mt-2">
+            <a asp-controller="Home" asp-action="Index" class="text-decoration-none">Back to Home</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+    <script>
+        const profileForm = document.getElementById('profileForm');
+        const statusMessage = document.getElementById('statusMessage');
+        const profileImage = document.getElementById('profileImage');
+        const submitButton = document.getElementById('submitButton');
+
+        profileForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent the default form submission (the full page reload)
+
+            // Disable the button to prevent multiple submissions
+            submitButton.disabled = true;
+
+            const formData = new FormData(profileForm);
+
+            try {
+                const response = await fetch(profileForm.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                // Handle the response from the server
+                if (result.success) {
+                    statusMessage.textContent = result.message;
+                    statusMessage.classList.remove('d-none', 'alert-danger');
+                    statusMessage.classList.add('alert-success');
+
+                    // Update the profile picture without reloading
+                    if (result.profilePictureUrl) {
+                        profileImage.src = result.profilePictureUrl + '?' + new Date().getTime(); // Add a timestamp to bust the cache
+                    }
+                } else {
+                    statusMessage.textContent = result.message;
+                    statusMessage.classList.remove('d-none', 'alert-success');
+                    statusMessage.classList.add('alert-danger');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                statusMessage.textContent = 'An error occurred. Please try again.';
+                statusMessage.classList.remove('d-none', 'alert-success');
+                statusMessage.classList.add('alert-danger');
+            } finally {
+                submitButton.disabled = false; // Re-enable the button
+            }
+        });
+    </script>
+}

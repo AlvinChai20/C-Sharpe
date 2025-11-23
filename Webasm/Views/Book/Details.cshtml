@@ -1,0 +1,41 @@
+﻿@model UsersApp.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+    decimal deposit = (decimal)ViewBag.Deposit;
+}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-lg text-center p-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+
+        <!-- Image -->
+        <img src="@Model.ImageUrl"
+             class="card-img-top img-fluid rounded mb-4 mx-auto"
+             style="max-height: 350px; object-fit: cover;"
+             alt="@Model.Name" />
+
+        <!-- Title -->
+        <h2 class="fw-bold mb-3">@Model.Name</h2>
+
+        <!-- Details -->
+        <div class="text-start mx-auto" style="max-width: 400px;">
+            <p><strong>Desc:</strong> @Model.Description</p>
+            <p><strong>Price:</strong> RM @Model.Price.ToString("F2")</p>
+            <p><strong>Deposit (20%):</strong> RM @deposit.ToString("F2")</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+            <a class="btn btn-primary px-4"
+               asp-controller="Booking"
+               asp-action="Index"
+               asp-route-service="@Model.Name"
+               asp-route-price="@Model.Price.ToString("F2")"
+               asp-route-deposit="@deposit.ToString("F2")">
+                Proceed Booking
+            </a>
+
+            <a class="btn btn-secondary px-4" asp-action="BookNow">Back</a>
+        </div>
+    </div>
+</div>

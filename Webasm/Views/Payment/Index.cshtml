@@ -1,0 +1,145 @@
+﻿@model UserApp.Models.Appointments
+
+<div class="container mt-5">
+    <head>
+        <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+
+    </head>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4 text-primary">Payment</h2>
+
+                    @if (ViewBag.Appointment != null)
+                    {
+                        <div class="alert alert-info rounded-3 shadow-sm">
+                            <p class="mb-1"><strong>Booking for:</strong> @Model.ClientName</p>
+                            <p class="mb-1"><strong>Contact:</strong> @Model.ContactNumber</p>
+                            <p class="mb-1"><strong>Service:</strong> @Model.Service</p>
+                            <p class="mb-1"><strong>Date:</strong> @Model.Date.ToString("g")</p>
+                            <p class="mb-1"><strong>Deposit:</strong> RM@Model.Deposit</p>
+                            <p class="mb-1 text-success fw-bold"><strong>Price:</strong> RM@Model.Price</p>
+                            <p class="mb-0"><strong>Purchase:</strong> @Model.PurchaseStatus</p>
+                        </div>
+                    }
+
+                    <form asp-action="Confirm" method="post">
+                        <input type="hidden" name="appointmentId" value="@Model.Id" />
+                        <input type="hidden" name="price" value="@ViewBag.Price" />
+
+                        <!-- Payment Method -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Choose a Payment Method:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="cardOption" value="Card" checked>
+                                <label class="form-check-label" for="cardOption">Pay by Card</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="onlineBankingOption" value="OnlineBanking">
+                                <label class="form-check-label" for="onlineBankingOption">Online Banking</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="ewalletOption" value="Ewallet">
+                                <label class="form-check-label" for="ewalletOption">E-wallet</label>
+                            </div>
+                        </div>
+
+                        <!-- Card Details -->
+                        <div id="cardDetails" class="payment-section">
+                            <div class="mb-3">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="16">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">CVV</label>
+                                    <input type="password" class="form-control" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Online Banking -->
+                        <div id="onlineBankingDetails" class="payment-section d-none">
+                            <div class="mb-3">
+                                <label class="form-label">Select Bank</label>
+                                <select class="form-select">
+                                    <option>Maybank</option>
+                                    <option>CIMB</option>
+                                    <option>RHB</option>
+                                    <option>Public Bank</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- E-wallet -->
+                        <div id="ewalletDetails" class="payment-section d-none">
+                            <div class="mb-3">
+                                <label class="form-label">E-wallet Provider</label>
+                                <select class="form-select">
+                                    <option>Touch 'n Go</option>
+                                    <option>GrabPay</option>
+                                    <option>Boost</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Contact Number</label>
+                                <input type="tel" class="form-control"
+                                       name="ContactNumber"
+                                       pattern="\d{10}"
+                                       maxlength="10"
+                                       minlength="10"
+                                       title="Contact number must be exactly 10 digits"
+                                       required />
+                                @Html.ValidationMessage("ContactNumber", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+
+                        <!-- Deposit -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Deposit</label>
+                            <input type="text" class="form-control fw-bold text-success" value="@ViewBag.Price" readonly />
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-success w-100 py-2 rounded-pill">Pay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cardDetails = document.getElementById("cardDetails");
+            const onlineBankingDetails = document.getElementById("onlineBankingDetails");
+            const ewalletDetails = document.getElementById("ewalletDetails");
+
+            function togglePaymentSections() {
+                cardDetails.classList.add("d-none");
+                onlineBankingDetails.classList.add("d-none");
+                ewalletDetails.classList.add("d-none");
+
+                if (document.getElementById("cardOption").checked) {
+                    cardDetails.classList.remove("d-none");
+                } else if (document.getElementById("onlineBankingOption").checked) {
+                    onlineBankingDetails.classList.remove("d-none");
+                } else if (document.getElementById("ewalletOption").checked) {
+                    ewalletDetails.classList.remove("d-none");
+                }
+            }
+
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(input => {
+                input.addEventListener("change", togglePaymentSections);
+            });
+
+            togglePaymentSections(); // initialize
+        });
+    </script>
+}

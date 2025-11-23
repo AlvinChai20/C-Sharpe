@@ -1,0 +1,74 @@
+﻿@using UsersApp
+@using UsersApp.Models
+@using UsersApp.ViewModels;
+@model LoginModels;
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">Login</h2>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="float-end">
+                <a asp-controller="Account" asp-action="VerifyEmail" class="text-decoration-none">
+                    Forgot password?
+                </a>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+
+            <!-- Hidden CaptchaToken field -->
+            <input type="hidden" asp-for="CaptchaToken" id="CaptchaToken" />
+
+            <!-- Google reCAPTCHA -->
+            <div class="mb-3 text-center">
+                <div class="g-recaptcha"
+                     data-sitekey="6Lfa0M4rAAAAAD7UZxufa40d3z5mBnkVkMgqoyPT"></div>
+            </div>
+
+            <input type="submit" value="Login" class="btn btn-primary w-100 p-2" />
+
+            <p class="text-center mt-2">
+                Don’t have an account?
+                <a asp-controller="Account" asp-action="Register" class="text-decoration-none">Register</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+
+    <!-- Google reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script>
+        // Copy token from reCAPTCHA to CaptchaToken before form submit
+        document.forms[0].addEventListener("submit", function () {
+            var token = document.getElementById("g-recaptcha-response").value;
+            document.getElementById("CaptchaToken").value = token;
+        });
+    </script>
+}
